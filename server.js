@@ -28,8 +28,8 @@ pool.connect();
 // Create a department
 app.post('/api/new-department', ({ body }, res) => {
   const sql = `INSERT INTO department (id, department_name)
-    VALUES ($1), ($2)`;
-  const params = [body.id, body.dept_name];
+    VALUES ($1, $2)`;
+  const params = [body.id, body.department_name];
 
   pool.query(sql, params, (err, result) => {
     if (err) {
@@ -46,7 +46,7 @@ app.post('/api/new-department', ({ body }, res) => {
 // Create a role
 app.post('/api/new-role', ({ body }, res) => {
   const sql = `INSERT INTO role (id, title, salary, department_id)
-    VALUES ($1), ($2), ($3), ($4)`;
+    VALUES ($1, $2, $3, $4)`;
   const params = [body.id, body.title, body.salary, body.department_id];
 
   pool.query(sql, params, (err, result) => {
@@ -63,7 +63,7 @@ app.post('/api/new-role', ({ body }, res) => {
 // Create an employee
 app.post('/api/new-employee', ({ body }, res) => {
   const sql = `INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
-    VALUES ($1), ($2), ($3), ($4), ($5)`;
+    VALUES ($1, $2, $3, $4, $5)`;
   const params = [body.id, body.first_name, body.last_name, body.role_id, body.manager_id];
 
   pool.query(sql, params, (err, result) => {
